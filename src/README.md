@@ -49,3 +49,8 @@
 3. RxJS API 解析http://www.tuicool.com/articles/MfEru2Q
 4. 使用RxJS实现JS的reactive编程 http://www.oschina.net/translate/rxjs-streams
 5. Github文档 https://github.com/Reactive-Extensions/RxJS
+
+# 接口
+1. 登录 login(id,password) 登出 logout
+2. 注册 register(1.请求服务器发token，获取属性是newToken(String) 2.提交表单，表单序列化，属性(token,id,birthday,name,password,repassword,QQ,phoneNumber,gender))
+3. 面试 intervieweeCheck(提交面试通过的人，参数字符串数组，内容是通过者id，passedIDs[]) intervieweeGet(获取还未面试的人员，传送无参，空json对象，得到的是对象数组，展示：学号，简介，姓名，年龄)
