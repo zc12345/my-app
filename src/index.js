@@ -6,6 +6,6 @@ import App from './App';
 import MyRoute from './MyRoute';
 
 ReactDOM.render(
-  <App />, 
+  <MyRoute />, 
   document.getElementById('root')
 );

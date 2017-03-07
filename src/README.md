@@ -8,7 +8,14 @@
 
 ## 下午的进度
 1. 问铮爷关于发送请求的问题，铮爷让我去看RxJS，后来看明白了，这是处理异步请求的方法
-2. 
+2. 学习了基本的通过ajax获取数据的办法
+3. 明白了.gitignore这种东西存在的重要性
+4. 得到了后端的登录，注册，面试页面的接口
+
+# 03/07/2017
+## 今天的任务
+1. 读关于redux的文档，了解运作原理
+2. 使用测试json文件进行简单的登录注册测试
 
 # React相关文档
 
@@ -32,7 +39,7 @@
 2. react,flux,redux关系简介 http://www.tuicool.com/articles/3AFJNbj
 3. 数据流管理架构之Redux介绍 http://www.alloyteam.com/2015/09/react-redux/
 4. 官方文档 http://redux.js.org/
-5. 
+5. 深入理解redux http://www.jianshu.com/p/0e42799be566
 
 ## Router篇
 1. react-router路由实践 http://blog.csdn.net/xingaichenai/article/details/52304851?locationNum=3&fps=1
