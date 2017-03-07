@@ -12,7 +12,7 @@ class App extends Component {
     };
   }
   componentDidMount() {
-    $.get("test.json", function(data){
+    $.get("test/test.json", function(data){
       console.log(data);
       var jsonText = JSON.stringify(data);
       var text = JSON.parse(jsonText);

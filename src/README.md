@@ -37,7 +37,7 @@
 ## Router篇
 1. react-router路由实践 http://blog.csdn.net/xingaichenai/article/details/52304851?locationNum=3&fps=1
 2. Github文档 https://github.com/ReactTraining/react-router
-3. 
+3. 阮一峰教程 http://www.ruanyifeng.com/blog/2016/05/react_router.html?utm_source=tool.lu
 
 ## Ajax请求篇
 1. 
