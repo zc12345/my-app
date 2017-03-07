@@ -5,9 +5,10 @@ import '../styles/Register.css'
 
 import { Form, Input, Tooltip, Icon, Checkbox, Button } from 'antd';
 const FormItem = Form.Item;
-//const Option = Select.Option;
-
-import {Link} from 'react-router';
+import { Radio } from 'antd';
+const RadioGroup = Radio.Group;
+import {Link, browserHistory} from 'react-router';
+import $ from 'jquery';
 
 class RegistrationForm extends React.Component {
   state = {
@@ -17,8 +18,47 @@ class RegistrationForm extends React.Component {
     e.preventDefault();
     this.props.form.validateFieldsAndScroll((err, values) => {
       if (!err) {
-        console.log('Received values of form: ', values);
+        console.log('1.Received values of form: ', values);
+        //values.token = 'ASHKED';
+        //console.log('2.Received values of form: ', values);
+        /*this.setState({
+          id : values.id,
+          password : values.password
+        },() => console.log(this.state.id));*/
+        //请求一个token属性的哈希值
+        $.post('register',function(json){
+            values.token = json.newToken
+        });
+        //提交表单
+        $.post('register',values,function(){
+          console.log('succeed to register0');
+          browserHistory.push('/home');
+        });  
+        /*
+        $.ajax({
+          url:'register',
+          type:'POST',
+          dataType:'json',
+          data:values,
+          scriptCharset:'utf-8',
+          success:function(data){
+            console.log('succeed to register');
+            browserHistory.push('/home');
+          },
+          error:function(err) {
+            alert("注册失败！");
+            console.error("Failed to register");
+            browserHistory.push('/register');
+          }
+          });*/     
       }
+    });
+  }
+  //性别选择器
+  selectGender = (e) => {
+    console.log('radio checked', e.target.value);
+    this.setState({
+      gender: e.target.value,
     });
   }
   handleConfirmBlur = (e) => {
@@ -52,20 +92,13 @@ class RegistrationForm extends React.Component {
         offset: 6,
       },
     };
-    /*const prefixSelector = getFieldDecorator('prefix', {
-      initialValue: '86',
-    })(
-      <Select className="icp-selector">
-        <Option value="86">+86</Option>
-      </Select>
-    );*/
     return (
       <Form onSubmit={this.handleSubmit} className="register-form">
         <FormItem
           {...formItemLayout}
           label="学号"
         >
-          {getFieldDecorator('stuid', {
+          {getFieldDecorator('id', {
             rules: [{ required: true, message: '请输入你的学号!' }],
           })(
             <Input />
@@ -91,7 +124,7 @@ class RegistrationForm extends React.Component {
           label="确认密码"
           hasFeedback
         >
-          {getFieldDecorator('confirm', {
+          {getFieldDecorator('repassword', {
             rules: [{
               required: true, message: '请确认你的密码!',
             }, {
@@ -105,15 +138,15 @@ class RegistrationForm extends React.Component {
           {...formItemLayout}
           label={(
             <span>
-              昵称&nbsp;
-              <Tooltip title="你想让别人怎么称呼你?">
+              姓名&nbsp;
+              <Tooltip title="请填写真实姓名！">
                 <Icon type="question-circle-o" />
               </Tooltip>
             </span>
           )}
           hasFeedback
         >
-          {getFieldDecorator('nickname', {
+          {getFieldDecorator('name', {
             rules: [{ required: true, message: '请输入你的昵称!' }],
           })(
             <Input />
@@ -122,19 +155,10 @@ class RegistrationForm extends React.Component {
         <FormItem
           {...formItemLayout}
           label="手机"
+          hasFeedback
         >
-          {getFieldDecorator('phone', {
+          {getFieldDecorator('phoneNumber', {
             rules: [{ required: true, message: '请输入你的手机号!' }],
-          })(
-            <Input /*addonBefore={prefixSelector}*/ />
-          )}
-        </FormItem>
-        <FormItem
-          {...formItemLayout}
-          label="微信"
-        >
-          {getFieldDecorator('wechat', {
-            rules: [{ required: true, message: '请输入你的微信号!' }],
           })(
             <Input />
           )}
@@ -142,26 +166,43 @@ class RegistrationForm extends React.Component {
         <FormItem
           {...formItemLayout}
           label="QQ"
+          hasFeedback
         >
-          {getFieldDecorator('qq', {
-            rules: [{ required: false }],
+          {getFieldDecorator('QQ', {
+            rules: [{ required: true, message: '请输入你的QQ号！' }],
           })(
             <Input />
           )}
         </FormItem>
         <FormItem
           {...formItemLayout}
-          label="邮箱"
+          label={(
+            <span>
+              生日&nbsp;
+              <Tooltip title="格式：2000-01-01">
+                <Icon type="question-circle-o" />
+              </Tooltip>
+            </span>
+          )}
           hasFeedback
         >
-          {getFieldDecorator('email', {
-            rules: [{
-              type: 'email', message: '输入的是无效邮箱!',
-            }, {
-              required: false,
-            }],
+          {getFieldDecorator('birthday', {
+            rules: [{ required: true, message: '请输入你的生日!' }],
           })(
             <Input />
+          )}
+        </FormItem>
+        <FormItem
+          {...formItemLayout}
+          label="性别"
+        >
+          {getFieldDecorator('gender', {
+            rules: [{ required: true, message: '' }],
+          })(
+          <RadioGroup onChange={this.selectGender} value={this.state.gender}>
+            <Radio value={0}>男</Radio>
+            <Radio value={1}>女</Radio>
+          </RadioGroup>
           )}
         </FormItem>
         <FormItem {...tailFormItemLayout} style={{ marginBottom: 8 }}>
