@@ -31,8 +31,8 @@
 2. http://www.material-ui.com
 
 ## 相关实践
-1. https://github.com/liuzhenangel/react-ruby-china
-2. https://github.com/mking/react-hn#setup
+1. ruby中文社区镜像https://github.com/liuzhenangel/react-ruby-china
+2. 新闻类 https://github.com/mking/react-hn#setup
 
 ## Redux篇
 1. react,flux,redux关系简介 http://www.tuicool.com/articles/FfeiiiQ
