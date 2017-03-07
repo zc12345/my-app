@@ -27,11 +27,11 @@ class RegistrationForm extends React.Component {
         },() => console.log(this.state.id));*/
         //请求一个token属性的哈希值
         $.post('register',function(json){
-            values.token = json.newToken
+            values.token = json.newToken;
         });
         //提交表单
         $.post('register',values,function(){
-          console.log('succeed to register0');
+          console.log('succeed to register');
           browserHistory.push('/home');
         });  
         /*
