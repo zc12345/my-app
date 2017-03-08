@@ -24,6 +24,7 @@ store.dispatch(toggleTodo(1));
 store.dispatch(setVisibilityFilter(VisibilityFilters.SHOW_COMPLETED));
 
 unsubscribe();
+/*
 class App extends Component {
   constructor(...args) {
     super(...args);
@@ -32,14 +33,14 @@ class App extends Component {
       data : null
     };
   }
-/*  componentDidMount() {
+  componentDidMount() {
     $.get("test/test.json", function(data){
       console.log(data);
       var jsonText = JSON.stringify(data);
       var text = JSON.parse(jsonText);
       console.log(text[0].id);
     });
-  }*/
+  }
   render() {
     return (
       <div className="App">
@@ -54,5 +55,5 @@ class App extends Component {
     );
   }
 }
-
+*/
 export default App;
