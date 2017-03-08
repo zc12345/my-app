@@ -24,6 +24,8 @@
 ## 今天的任务
 1. 建立起reducer和store
 2. 面试页面的逻辑部分
+3. login和register对于ajax传回的错误信息进行处理
+4. login和register的表单验证
 
 ## 关于前后端分离的交互部分
 1. 查了网上的资料，提到有跨域访问的话可以使用代理
@@ -32,7 +34,12 @@
 4. 而网上所谓的跨域访问是因为前后端使用的服务器不同，前端如果是nodejs，端口是`localhost:3000`，后端使用tomcat，端口号是8080，这种时候会出现跨域访问；或者一个是网上服务器，一个是本地服务器，发出请求会出现跨域
 5. 很清晰的一点是，前后端只有数据交互，没有别的内容，前后端不能对对方进行控制操作
 
-# React相关文档
+## 关于react-redux
+1. 现在好像对于react-redux的层次有一点明白了
+2. 首先是包了一层provider，然后从store里面取状态，状态是所有组件都可得到的state值，router进行分发，action定义操作接口，reducer进行具体业务逻辑的定义，如果要增加操作的话可以使用中间层
+3. 但是，但是map是放在哪里呢？action吗？刚刚查了一下，是放在组件内，但是不知道是只能在app组件还是都可以
+
+# React开发过程参考的相关文档
 
 ## 入门篇
 1. 阮一峰 React 入门教程实例  http://www.ruanyifeng.com/blog/2015/03/react.html
@@ -55,6 +62,7 @@
 3. 数据流管理架构之Redux介绍 http://www.alloyteam.com/2015/09/react-redux/
 4. 官方文档 http://redux.js.org/
 5. 深入理解redux http://www.jianshu.com/p/0e42799be566
+6. 阮一峰教程 http://www.ruanyifeng.com/blog/2016/09/redux_tutorial_part_one_basic_usages.html
 
 ## Router篇
 1. react-router路由实践 http://blog.csdn.net/xingaichenai/article/details/52304851?locationNum=3&fps=1
@@ -62,14 +70,16 @@
 3. 阮一峰教程 http://www.ruanyifeng.com/blog/2016/05/react_router.html?utm_source=tool.lu
 
 ## Ajax请求篇
-1. 
-2. 
+1. fetch发送请求 https://segmentfault.com/n/1330000008597077?token=85d4b15986e26d1b35c9885f2fbff1e1
+2. ajax加载数据 http://www.css88.com/react/tips/initial-ajax.html
+3. ajax获取数据实例 http://liuxinxiu.com/React_Ajax_setState_Render_UI_ES6/
+4. ajax提交表单 http://www.cnblogs.com/zhuxiaojie/p/4783939.html
 
 ## 前后端交互篇
 1. 如何解决跨域问题 http://react-china.org/t/topic/7258
 2. 淘宝前后端分离实践思考 http://frontenddev.org/column/taobao-full-stack-development/
 3. react native 采用fetch发送跨域请求 http://blog.csdn.net/u012620506/article/details/52346264
-
+4. 前后端交互实践 http://www.cnblogs.com/acoder2013/p/5060498.html
 
 # RxJS相关文档
 1. RxJS简介 http://www.tuicool.com/articles/iYv2qiR
