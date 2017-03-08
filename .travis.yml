@@ -5,6 +5,8 @@ node_js:
   - "6"
 
 # using npm
-npm install
+before_script:
+ -npm install
 
-npm run build
+after_script:
+ 
