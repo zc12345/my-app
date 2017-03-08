@@ -1,7 +1,6 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 
-import {Router, Route, hashHistory, browserHistory} from 'react-router';
+import {Router, Route, browserHistory} from 'react-router';
 
 import Main from './components/Main';
 import Home from './components/Home';

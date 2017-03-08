@@ -2,7 +2,7 @@ import 'antd/dist/antd.css';
 import '../styles/Home.css';
 
 import React from 'react';
-import {Link} from 'react-router';
+//import {Link} from 'react-router';
 
 import { Layout, Menu, Icon } from 'antd';
 const { SubMenu } = Menu;
