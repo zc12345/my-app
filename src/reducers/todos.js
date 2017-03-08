@@ -1,4 +1,5 @@
-const todo = (state = {}, action) => {
+//reducer中的函数，大致内容是state+action=>nextState，可以在里面对数据进行处理，比如增删改查
+const todo = (state = {}, action ) => {
   switch (action.type) {
     case 'ADD_TODO':
       return {
@@ -8,15 +9,13 @@ const todo = (state = {}, action) => {
       }
     case 'TOGGLE_TODO':
       if (state.id !== action.id) {
-        return state
+        return state;
       }
-
       return Object.assign({}, state, {
         completed: !state.completed
       })
-
     default:
-      return state
+      return state;
   }
 }
 
@@ -29,11 +28,11 @@ const todos = (state = [], action) => {
       ]
     case 'TOGGLE_TODO':
       return state.map(t =>
-        todo(t, action)
-      )
+        todo(t, action)//遍历查找，依次调用上面定义的todo函数
+        )
     default:
-      return state
+      return state;
   }
 }
 
-export default todos
+export default todos;

@@ -1,4 +1,5 @@
-let nextTodoId = 0
+let nextTodoId = 0;   //id counter,每次新增一个todo，先把nextTodo赋值给todo对象id，然后nextTodo自增，局部变量
+//addTodo Action，传入值是text内容，返回值是对象
 export const addTodo = (text) => {
   return {
     type: 'ADD_TODO',
@@ -6,14 +7,14 @@ export const addTodo = (text) => {
     text
   }
 }
-
-export const setVisibilityFilter = (filter) => {
+//声明一个setVisibilityFilter Action，根据filter过滤所要的内容
+export const setVisibilityFilter = (filter)=>{
   return {
     type: 'SET_VISIBILITY_FILTER',
     filter
   }
 }
-
+//声明一个toggleTodo Action,根据id值进行删除
 export const toggleTodo = (id) => {
   return {
     type: 'TOGGLE_TODO',
