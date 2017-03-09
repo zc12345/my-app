@@ -23,12 +23,12 @@ const columns = [{
   dataIndex: 'gender',
 }];
 
-const data = [];
 
 export default class IntervieweeList extends React.Component {
   state = {
     selectedRowKeys: [],  // Check here to configure the default column
     loading: false,
+    data: []
   };
   start = () => {
     this.setState({ loading: true });
@@ -44,11 +44,13 @@ export default class IntervieweeList extends React.Component {
     console.log('selectedRowKeys changed: ', selectedRowKeys);
     this.setState({ selectedRowKeys });
   }
+  
   componentWillMount() {
     $.get("test/intervieweeGet.json",function(json){
       console.log(json);
-      for (let i=0;i<json.interviewee.length;i++)
-        data.push({
+      console.log(this.state.loading);
+      for (let i=0;i<json.interviewee.length;i++) {
+        this.state.data.push({
           key: i,
           id: json.interviewee[i].id,
           name: json.interviewee[i].name,
@@ -56,8 +58,11 @@ export default class IntervieweeList extends React.Component {
           gender:json.interviewee[i].gender,
           description: json.interviewee[i].description
         });
-      console.log(data);
-    })
+      }
+      this.setState({});
+
+      console.log(this.state.data);
+    }.bind(this))
   }
   render() {
     const { loading, selectedRowKeys } = this.state;
@@ -77,7 +82,7 @@ export default class IntervieweeList extends React.Component {
         <Table 
           rowSelection={rowSelection} 
           columns={columns} 
-          dataSource={data} 
+          dataSource={this.state.data} 
           expandedRowRender={record => <p>{record.description}</p>} 
         />
       </div>
