@@ -39,6 +39,10 @@
 2. 首先是包了一层provider，然后从store里面取状态，状态是所有组件都可得到的state值，router进行分发，action定义操作接口，reducer进行具体业务逻辑的定义，如果要增加操作的话可以使用中间层
 3. 但是，但是map是放在哪里呢？action吗？刚刚查了一下，是放在组件内，但是不知道是只能在app组件还是都可以
 
+# 03/09/2017
+## 关于componentWillMount()
+1. 现在的思路是在componentWillMount()时候加入ajax，然后进行获取数据进行渲染，但是问题是console.log()能够打印出来数据，但是render渲染的时候没有显示，为什么呢？
+
 # React开发过程参考的相关文档
 
 ## 入门篇

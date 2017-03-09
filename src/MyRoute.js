@@ -6,6 +6,7 @@ import Main from './components/Main';
 import Home from './components/Home';
 import Login from './components/Login';
 import Table from './components/Table';
+import Interview from './components/IntervieweeList';
 import Register from './components/Register';
 
 export default class MyRoute extends React.Component {
@@ -17,6 +18,7 @@ export default class MyRoute extends React.Component {
                     <Route path='/login' component={Login}/>
                     <Route path='/register' component={Register}/>
                     <Route path='/table' component={Table}/>
+                    <Route path='/interview' component={Interview}/>
                 </Route>
             </Router>
         );

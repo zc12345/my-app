@@ -7,7 +7,7 @@ import todoApp from './reducers';
 import App from './components/App';
  
 //App test component
-//import App from './App';
+import TApp from './App';
 import MyRoute from './MyRoute';
 
 //打开redux devtool
@@ -19,7 +19,7 @@ window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 //甚至还可以把要渲染的部分mountNode也作为一个const值传入，如`const mountNode = document.getElementById('root');`
 ReactDOM.render(
   <Provider store={store}>
-    <App />
+    <MyRoute />
   </Provider>, 
   document.getElementById('root')
 );

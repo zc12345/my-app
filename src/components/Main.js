@@ -26,6 +26,7 @@ class Main extends React.Component {
           <Menu.Item key="1"><Link to='/login'>登录</Link></Menu.Item>
           <Menu.Item key="2"><Link to='/register'>注册</Link></Menu.Item>
           <Menu.Item key="3"><Link to='/home'>主页</Link></Menu.Item>
+          <Menu.Item key="4"><Link to='/interview'>面试</Link></Menu.Item>
         </Menu>
       </Header>
       <Content style={{ padding: '0 50px' }}>
@@ -41,7 +42,7 @@ class Main extends React.Component {
         </div>
       </Content>
       <Footer style={{ textAlign: 'center' }}>
-        Ant Design ©2016 Created by Ant UED
+        IBM CLUB ©2017 Created by XJTU IBM CLUB
       </Footer>
     </Layout>
     );
