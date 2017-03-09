@@ -60,7 +60,6 @@ export default class IntervieweeList extends React.Component {
         });
       }
       this.setState({});
-
       console.log(this.state.data);
     }.bind(this))
   }
