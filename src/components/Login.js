@@ -8,35 +8,20 @@ import { Form, Icon, Input, Button, Checkbox } from 'antd';
 const FormItem = Form.Item;
 
 class NormalLoginForm extends React.Component {
-  constructor(...args) {
-    super(...args);
-    this.state = {
-      id : null,
-      password: ''
-    }
-  }
   handleSubmit = (e) => {
     e.preventDefault(); 
     this.props.form.validateFields((err, values) => {
       if (!err) {
         console.log('Received values of form: ', values);
-        this.setState({
-          id : values.id,
-          password : values.password
-        },() => console.log(this.state.id));
-        /**
-         * 一开始发现set之后state值仍然不变，后来查资料得知setState是异步的
-         * 方法有三个，一个是使用第二参数回调之后执行，一个是用componentDidUpdate()方法，还有就是mbox的@observer,@observable
-         */
-        //console.log(this.state.id);
-        //测试页面是否可以正常跳转
-        //browserHistory.push('/home');
-        //但是。。。我这要怎么测试呢？
+        var postLogin = new Object();
+        postLogin.id = values.id;
+        postLogin.password = values.password;
+        console.log(JSON.stringify(postLogin));
         $.ajax({
           url:'login',
           type:'POST',
           dataType:'json',
-          data:values,
+          data:JSON.stringify(postLogin),
           scriptCharset:'utf-8',
           success:function(data){
             console.log('success login');
@@ -53,7 +38,6 @@ class NormalLoginForm extends React.Component {
   }
   render() {
     const { getFieldDecorator } = this.props.form;
-    //console.log('Hello,this is login.js');
     return (
       <Form onSubmit={this.handleSubmit} className="login-form">
         <FormItem>

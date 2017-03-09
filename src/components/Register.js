@@ -18,14 +18,7 @@ class RegistrationForm extends React.Component {
     e.preventDefault();
     this.props.form.validateFieldsAndScroll((err, values) => {
       if (!err) {
-        console.log('1.Received values of form: ', values);
-        //values.token = 'ASHKED';
-        //console.log('2.Received values of form: ', values);
-        /*this.setState({
-          id : values.id,
-          password : values.password
-        },() => console.log(this.state.id));*/
-        //请求一个token属性的哈希值
+        console.log('Received values of form: ', values);
         $.post('register',function(json){
             values.token = json.newToken;
         });
@@ -68,7 +61,7 @@ class RegistrationForm extends React.Component {
   checkPassword = (rule, value, callback) => {
     const form = this.props.form;
     if (value && value !== form.getFieldValue('password')) {
-      callback('Two passwords that you enter is inconsistent!');
+      callback('两次输入的密码不一致!');
     } else {
       callback();
     }
@@ -76,7 +69,7 @@ class RegistrationForm extends React.Component {
   checkConfirm = (rule, value, callback) => {
     const form = this.props.form;
     if (value && this.state.confirmDirty) {
-      form.validateFields(['confirm'], { force: true });
+      form.validateFields(['repassword'], { force: true });
     }
     callback();
   }
@@ -97,6 +90,7 @@ class RegistrationForm extends React.Component {
         <FormItem
           {...formItemLayout}
           label="学号"
+          hasFeedback
         >
           {getFieldDecorator('id', {
             rules: [{ required: true, message: '请输入你的学号!' }],

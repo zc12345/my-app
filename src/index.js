@@ -5,7 +5,6 @@ import {createStore} from 'redux';
 import {Provider} from 'react-redux';
 import todoApp from './reducers';
 import App from './components/App';
-import SignUp from './components/SignUp';
 //App test component
 import TApp from './App';
 import MyRoute from './MyRoute';

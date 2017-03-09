@@ -30,9 +30,13 @@ export default class IntervieweeList extends React.Component {
     loading: false,
     data: []
   };
-  start = () => {
+  postInterviewed = () => {
     this.setState({ loading: true });
     // ajax request after empty completing
+    $.get('test/intervieweeCheck.json',this.state.selectedRowKeys,() => {
+      console.log('success post interviewIds');
+      alert("提交成功");
+    })
     setTimeout(() => {
       this.setState({
         selectedRowKeys: [],
@@ -51,12 +55,13 @@ export default class IntervieweeList extends React.Component {
       console.log(this.state.loading);
       for (let i=0;i<json.interviewee.length;i++) {
         this.state.data.push({
-          key: i,
+          key: json.interviewee[i].id,
           id: json.interviewee[i].id,
           name: json.interviewee[i].name,
           age: json.interviewee[i].age,
           gender:json.interviewee[i].gender,
-          description: json.interviewee[i].description
+          description: json.interviewee[i].description,
+          admitted : false
         });
       }
       this.setState({});
@@ -73,7 +78,7 @@ export default class IntervieweeList extends React.Component {
     return (
       <div>
         <div style={{ marginBottom: 16 }}>
-          <Button type="primary" onClick={this.start}
+          <Button type="primary" onClick={this.postInterviewed}
             disabled={!hasSelected} loading={loading}
           >提交</Button>
           <span style={{ marginLeft: 8 }}>{hasSelected ? `Selected ${selectedRowKeys.length} items` : ''}</span>
