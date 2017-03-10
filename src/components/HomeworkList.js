@@ -47,7 +47,7 @@ const data = [{
   address: 'Sidney No. 1 Lake Park',
 }];
 
-export default class HomeworkList extends React.component {
+export default class HomeworkList extends React.Component {
     render(){
         return (
             <Table columns={columns} dataSource={data} />
