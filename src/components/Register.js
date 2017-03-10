@@ -9,7 +9,11 @@ import { Radio } from 'antd';
 const RadioGroup = Radio.Group;
 import {Link, browserHistory} from 'react-router';
 import $ from 'jquery';
-
+/**
+ * 当输入数据的时候会出现下面的提示信息，不知道为什么：
+ * Warning: `getFieldDecorator` will override `value`, 
+ * so please don't set `value` directly and use `setFieldsValue` to set it.
+ */
 class RegistrationForm extends React.Component {
   state = {
     confirmDirty: false,
@@ -26,24 +30,7 @@ class RegistrationForm extends React.Component {
         $.post('register',values,function(){
           console.log('succeed to register');
           browserHistory.push('/home');
-        });  
-        /*
-        $.ajax({
-          url:'register',
-          type:'POST',
-          dataType:'json',
-          data:values,
-          scriptCharset:'utf-8',
-          success:function(data){
-            console.log('succeed to register');
-            browserHistory.push('/home');
-          },
-          error:function(err) {
-            alert("注册失败！");
-            console.error("Failed to register");
-            browserHistory.push('/register');
-          }
-          });*/     
+        });    
       }
     });
   }
@@ -93,7 +80,13 @@ class RegistrationForm extends React.Component {
           hasFeedback
         >
           {getFieldDecorator('id', {
-            rules: [{ required: true, message: '请输入你的学号!' }],
+            rules: [{ 
+                required: true, message: '请输入你的学号!' 
+              },{
+                max:10, message:"长度超过限制"
+              },{ 
+                pattern: /[2-4]\d{9}/, message:"学号格式不正确！"
+              }],
           })(
             <Input />
           )}
@@ -107,6 +100,10 @@ class RegistrationForm extends React.Component {
             rules: [{
               required: true, message: '请输入你的密码!',
             }, {
+              max: 30, message:"长度超过限制"
+            },{
+              pattern: /[a-zA-Z\d_]{6,30}/, message:"密码只能为6-30位的字母数字与下划线组合，不能以下划线开头！"
+            },{
               validator: this.checkConfirm,
             }],
           })(
@@ -121,6 +118,10 @@ class RegistrationForm extends React.Component {
           {getFieldDecorator('repassword', {
             rules: [{
               required: true, message: '请确认你的密码!',
+            },{
+              max:30, message:"长度超过限制"
+            },{
+              pattern: /[a-zA-Z\d_]{6,30}/, message:"密码只能为6-30位的字母数字与下划线组合，不能以下划线开头！"
             }, {
               validator: this.checkPassword,
             }],
@@ -141,7 +142,13 @@ class RegistrationForm extends React.Component {
           hasFeedback
         >
           {getFieldDecorator('name', {
-            rules: [{ required: true, message: '请输入你的昵称!' }],
+            rules: [{ 
+                required: true, message: '请输入你的昵称!' 
+              },{
+                max:20, message:"长度超过限制"
+              },{
+                pattern: /[\u4e00-\u9f95a-zA-Z]{2,20}/,message:"姓名格式不正确！"
+              }],
           })(
             <Input />
           )}
@@ -152,7 +159,13 @@ class RegistrationForm extends React.Component {
           hasFeedback
         >
           {getFieldDecorator('phoneNumber', {
-            rules: [{ required: true, message: '请输入你的手机号!' }],
+            rules: [{ 
+                required: true, message: '请输入你的手机号!' 
+              },{
+                max:11, message:"长度超过限制"
+              },{
+                pattern: /(^((13[0-9])|(15[^4])|(18[0,2,3,5-9])|(17[0-8])|(147))\d{8}$)|(^(5|6|8|9)\d{7}$)/,message:"手机号格式不正确！"
+              }],
           })(
             <Input />
           )}
@@ -163,7 +176,13 @@ class RegistrationForm extends React.Component {
           hasFeedback
         >
           {getFieldDecorator('QQ', {
-            rules: [{ required: true, message: '请输入你的QQ号！' }],
+            rules: [{ 
+              required: true, message: '请输入你的QQ号！' 
+            },{
+              max:15, message:"长度超过限制"
+            },{
+              pattern:/[1-9]\d{4,15}/,message:"QQ号格式不正确！"
+            }],
           })(
             <Input />
           )}
@@ -194,8 +213,8 @@ class RegistrationForm extends React.Component {
             rules: [{ required: true, message: '' }],
           })(
           <RadioGroup onChange={this.selectGender} value={this.state.gender}>
-            <Radio value={0}>男</Radio>
-            <Radio value={1}>女</Radio>
+            <Radio value={true}>男</Radio>
+            <Radio value={false}>女</Radio>
           </RadioGroup>
           )}
         </FormItem>

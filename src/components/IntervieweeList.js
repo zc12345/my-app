@@ -60,8 +60,7 @@ export default class IntervieweeList extends React.Component {
           name: json.interviewee[i].name,
           age: json.interviewee[i].age,
           gender:json.interviewee[i].gender,
-          description: json.interviewee[i].description,
-          admitted : false
+          description: json.interviewee[i].description
         });
       }
       this.setState({});

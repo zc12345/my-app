@@ -13,7 +13,7 @@ class NormalLoginForm extends React.Component {
     this.props.form.validateFields((err, values) => {
       if (!err) {
         console.log('Received values of form: ', values);
-        var postLogin = new Object();
+        var postLogin = {};
         postLogin.id = values.id;
         postLogin.password = values.password;
         console.log(JSON.stringify(postLogin));
