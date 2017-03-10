@@ -50,6 +50,11 @@
 1. 还是没能搞定redux，真的有点绝望，还有一个星期，真的能完成吗
 2. 我感觉自己进度越来越慢，好像一天也没能完成什么工作，真的有点茫然
 
+# 03/10/2017
+## 关于今天解决的问题
+1. 登录注册的正则表达式验证搞定了，下面还欠缺的是生日格式的问题和返回信息的提示
+2. 
+
 # React开发过程参考的相关文档
 
 ## 入门篇
@@ -102,4 +107,16 @@
 # 接口
 1. 登录 login(id,password) 登出 logout
 2. 注册 register(1.请求服务器发token，获取属性是newToken(String) 2.提交表单，表单序列化，属性(token,id,birthday,name,password,repassword,QQ,phoneNumber,gender))
-3. 面试 intervieweeCheck(提交面试通过的人，参数字符串数组，内容是通过者id，passedIDs[]) intervieweeGet(获取还未面试的人员，传送无参，空json对象，得到的是对象数组，展示：学号，简介，姓名，年龄)
+3. 面试 intervieweeCheck(提交面试通过的人，参数字符串数组，内容是通过者id，passedIDs[]) intervieweeGet(获取还未面试的人员，传送无参，空json对象，得到的是对象数组，展示：学号，简介，姓名，年龄)在注册界面要添加一个属性 description(个人简介),限制300字内
+4. 作业管理 
+homeWorkID {Department: dept, int times, Member homeWorkSubmitter}
+5. 接口列表
+- 注册：register
+- 作业管理：homeworkManagement
+- 签到：memberSign
+- 部门添加成员：addMember
+- 修改密码：changePassword
+- 获取当前部门的成员：fetchAllPerson
+- 删除成员：deletePersonSubmit
+- 重置密码：resetPasswordSubmit
+- 修改成员信息：modifyInfo

@@ -6,8 +6,10 @@ import {Provider} from 'react-redux';
 import todoApp from './reducers';
 import App from './components/App';
 //App test component
-import TApp from './App';
+import Test from './components/Test';
 import MyRoute from './MyRoute';
+
+import './styles/index.css';
 
 //打开redux devtool
 //可以把第二个参数作为一个const值传入

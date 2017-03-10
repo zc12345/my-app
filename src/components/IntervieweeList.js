@@ -33,7 +33,7 @@ export default class IntervieweeList extends React.Component {
   postInterviewed = () => {
     this.setState({ loading: true });
     // ajax request after empty completing
-    $.get('test/intervieweeCheck.json',this.state.selectedRowKeys,() => {
+    $.post('intervieweeCheck', JSON.stringify(this.state.selectedRowKeys), () => {
       console.log('success post interviewIds');
       alert("提交成功");
     })
@@ -50,7 +50,7 @@ export default class IntervieweeList extends React.Component {
   }
   
   componentWillMount() {
-    $.get("test/intervieweeGet.json",function(json){
+    $.post("intervieweeGet",function(json){
       console.log(json);
       console.log(this.state.loading);
       for (let i=0;i<json.interviewee.length;i++) {

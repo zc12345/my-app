@@ -42,14 +42,26 @@ class NormalLoginForm extends React.Component {
       <Form onSubmit={this.handleSubmit} className="login-form">
         <FormItem>
           {getFieldDecorator('id', {
-            rules: [{ required: true, message: '请输入你的学号!' }],
+            rules: [{ 
+                required: true, message: '请输入你的学号!' 
+              },{
+                max:10, message:"长度超过限制"
+              },{ 
+                pattern: /[2-4]\d{9}/, message:"学号格式不正确！"
+              }],
           })(
             <Input addonBefore={<Icon type="user" />} placeholder="student ID" />
           )}
         </FormItem>
         <FormItem>
           {getFieldDecorator('password', {
-            rules: [{ required: true, message: '请输入你的密码!' }],
+            rules: [{ 
+                required: true, message: '请输入你的密码!' 
+              }, {
+              max: 30, message:"长度超过限制"
+              },{
+                pattern: /[a-zA-Z\d_]{6,30}/, message:"密码只能为6-30位的字母数字与下划线组合，不能以下划线开头！"
+              }],
           })(
             <Input addonBefore={<Icon type="lock" />} type="password" placeholder="Password" />
           )}

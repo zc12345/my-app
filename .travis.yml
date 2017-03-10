@@ -1,12 +1,10 @@
 # specifying node.js versions
 language: node_js
 node_js:
-  - "iojs"
   - "6"
-
-# using npm
-before_script:
- -npm install
-
-after_script:
- 
+cache:
+  directories:
+    - node_modules
+branches:
+  only:
+    - master
