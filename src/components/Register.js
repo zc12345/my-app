@@ -59,6 +59,14 @@ class RegistrationForm extends React.Component {
     }
     callback();
   }
+  disabledDate = (current) => {
+    let oldestDate = new Date(1970,0);
+    //现在只能做到限制1970年之后和当前日期之前，不知道怎么进一步限制
+    //let newestDate = new Date();
+    //newestDate.setFullYear(Date.now().getFullYear() - 15);
+    //console.log(newestDate);
+    return current && (current < oldestDate) || (current > Date.now()); 
+  }
   render() {
     const { getFieldDecorator } = this.props.form;
     const formItemLayout = {
@@ -208,7 +216,7 @@ class RegistrationForm extends React.Component {
           {getFieldDecorator('birthday', {
             rules: [{ required: true, message: '请选择你的生日!' }],
           })(
-            <DatePicker />
+            <DatePicker disabledDate={this.disabledDate} showTime/>
             )}
         </FormItem>
         <FormItem
