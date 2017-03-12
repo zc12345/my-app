@@ -12,15 +12,20 @@ class NormalLoginForm extends React.Component {
   state = {
     fieldErrors :[]
   }
+  //提交表单
   handleSubmit = (e) => {
     e.preventDefault(); 
     this.props.form.validateFields((err, values) => {
       if (!err) {
         console.log('Received values of form: ', values);
-        var postLogin = {};
-        postLogin.id = values.id;
-        postLogin.password = values.password;
-        console.log(JSON.stringify(postLogin));
+        var postLogin = {
+            id : values.id,
+            password : values.password
+        };
+        localStorage.id = values.id;
+        console.log(localStorage);
+        browserHistory.push('/');
+/*        console.log(JSON.stringify(postLogin));
         $.ajax({
           url:'login',
           type:'POST',
@@ -40,9 +45,9 @@ class NormalLoginForm extends React.Component {
           error:function(err) {
             this.setState({fieldErrors:['请检查你的网络！']});
             console.error("Failed to post");
-            //browserHistory.push('/login');
+            browserHistory.push('/home');
           }.bind(this)
-          });
+          });*/
       }
     });
   }

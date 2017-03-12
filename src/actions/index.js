@@ -21,3 +21,25 @@ export const toggleTodo = (id) => {
     id
   }
 }
+//声明一个登录的Action
+let username = null;
+let userid = null;
+let signed = false;
+export const login = (user) =>{
+  return {
+    type: 'LOGIN',
+    payload:{
+      username,
+      userid,
+    }
+  }
+}
+export const logout = (user) =>{
+  return {
+    type: 'LOGOUT',
+    payload:{
+      username,
+      userid,
+    }
+  }
+}

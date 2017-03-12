@@ -5,30 +5,29 @@
  * description: 本组件的作用是对main结点进行渲染，展现整体布局
  */
 import React from 'react';
-import {Link} from 'react-router';
+import {Link, browserHistory} from 'react-router';
 import 'antd/dist/antd.css';
 
-import { Layout, Menu, Breadcrumb } from 'antd';
-const { Header, Content, Footer } = Layout;
+import { Layout, Breadcrumb } from 'antd';
+const { Content, Footer } = Layout;
+
+import MyHeader from './MyHeader'; 
 
 class Main extends React.Component {
+  state = {
+    userid:localStorage.id,
+    username:''
+  }
+  //当logout的时候注销账号进行刷新
+  onChildChanged = (e) => {
+    localStorage.clear();
+    this.setState({userid:''});
+    browserHistory.push('/');
+  } 
   render() {
     return (
     <Layout className="layout">
-      <Header>
-        <div className="logo" />
-        <Menu
-          theme="dark"
-          mode="horizontal"
-          defaultSelectedKeys={['2']}
-          style={{ lineHeight: '64px' }}
-        >
-          <Menu.Item key="1"><Link to='/login'>登录</Link></Menu.Item>
-          <Menu.Item key="2"><Link to='/register'>注册</Link></Menu.Item>
-          <Menu.Item key="3"><Link to='/manage'>管理</Link></Menu.Item>
-          <Menu.Item key="4"><Link to='/home'>主页</Link></Menu.Item>
-        </Menu>
-      </Header>
+      <MyHeader user={this.state.userid} callbackParent={this.onChildChanged}/>
       <Content style={{ padding: '0 50px' }}>
         <Breadcrumb style={{ margin: '12px 0' }}>
           <Breadcrumb.Item><Link to='/Home'>Home</Link></Breadcrumb.Item>

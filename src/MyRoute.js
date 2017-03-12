@@ -25,6 +25,7 @@ export default class MyRoute extends React.Component {
                         <Route path='/interview' component={Interview}/>
                         <Route path='/homeworkList' component={HomeworkList}/>            
                     </Route>
+                    <Route path="/*" component={Login} />
                 </Route>
             </Router>
         );

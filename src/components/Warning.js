@@ -16,12 +16,14 @@ export default class Warning extends React.Component{
         if (this.props.value.length) {
             return (
             <div>
-                <Alert message={errors}
+                {errors.map(item =>
+                <Alert message={item}
                     type="warning"
                     banner
                     closable
                     onClose={onClose}
                 />
+                )}
             </div>
             );
         } else {

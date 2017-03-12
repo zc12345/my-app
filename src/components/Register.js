@@ -35,13 +35,13 @@ class RegistrationForm extends React.Component {
           values.token = json.newToken;
         });
         //提交表单
-        var v = $.post('register', JSON.stringify(values), function (response) {
+        $.post('register', JSON.stringify(values), function (response) {
           console.log('succeed to post');
           let resp = JSON.parse(response);
           this.setState({
             fieldErrors : resp.fieldError.map( function (item,index,array)  {
               return item;
-            }.bind(this))});
+            })});
           browserHistory.push('/home');
         }.bind(this));
       }
@@ -72,7 +72,7 @@ class RegistrationForm extends React.Component {
     let now = new Date(Date.now());
     let newestDate = new Date();
     newestDate.setFullYear(now.getFullYear() - 15);
-    return current && (current < oldestDate) || (current > newestDate); 
+    return (current < oldestDate) || (current > newestDate); 
   }
   render() {
     const { getFieldDecorator } = this.props.form;

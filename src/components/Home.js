@@ -23,7 +23,7 @@ export default class Home extends React.Component {
               <Menu.Item key="1"><Link to='/user'>修改信息</Link></Menu.Item>
               <Menu.Item key="2">提交作业</Menu.Item>
               <Menu.Item key="3">文件下载</Menu.Item>
-              <Menu.Item key="4">option4</Menu.Item>
+              <Menu.Item key="4">{localStorage}</Menu.Item>
             </SubMenu>
             <SubMenu key="sub2" title={<span><Icon type="laptop" />社团文化</span>}>
               <Menu.Item key="5">option5</Menu.Item>
