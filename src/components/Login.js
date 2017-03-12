@@ -6,8 +6,12 @@ import {browserHistory, Link} from 'react-router';
 import $ from 'jquery';
 import { Form, Icon, Input, Button, Checkbox } from 'antd';
 const FormItem = Form.Item;
+import Warning from './Warning';
 
 class NormalLoginForm extends React.Component {
+  state = {
+    fieldErrors :[]
+  }
   handleSubmit = (e) => {
     e.preventDefault(); 
     this.props.form.validateFields((err, values) => {
@@ -25,13 +29,16 @@ class NormalLoginForm extends React.Component {
           scriptCharset:'utf-8',
           success:function(data){
             console.log('success login');
+            this.state.fieldErrors = data.map( function (item,index,array)  {
+              return item;
+            });//对于返回的fieldError进行显示处理            
             browserHistory.push('/home');
-          },
+          }.bind(this),
           error:function(err) {
-            alert("登录失败！");
-            console.error("Failed to login");
-            browserHistory.push('/login');
-          }
+            this.setState({fieldErrors:['请检查你的网络！']});
+            console.error("Failed to post");
+            //browserHistory.push('/login');
+          }.bind(this)
           });
       }
     });
@@ -39,6 +46,8 @@ class NormalLoginForm extends React.Component {
   render() {
     const { getFieldDecorator } = this.props.form;
     return (
+      <div>
+        <Warning value={this.state.fieldErrors}/>
       <Form onSubmit={this.handleSubmit} className="login-form">
         <FormItem>
           {getFieldDecorator('id', {
@@ -80,6 +89,7 @@ class NormalLoginForm extends React.Component {
           Or <Link to='/register'>register now!</Link>
         </FormItem>
       </Form>
+      </div>
     );
   }
 }

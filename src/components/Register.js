@@ -8,10 +8,12 @@ const FormItem = Form.Item;
 const Option = Select.Option;
 import { Link, browserHistory } from 'react-router';
 import $ from 'jquery';
+import Warning from './Warning';
 
 class RegistrationForm extends React.Component {
   state = {
     confirmDirty: false,
+    fieldErrors:[]
   };
   handleSubmit = (e) => {
     e.preventDefault();
@@ -33,10 +35,14 @@ class RegistrationForm extends React.Component {
           values.token = json.newToken;
         });
         //提交表单
-        $.post('register', JSON.stringify(values), function () {
-          console.log('succeed to register');
+        var v = $.post('register', JSON.stringify(values), function (fieldError) {
+          console.log('succeed to post');
+          console.log('fieldErrors :'+ fieldError);
+          this.state.fieldErrors = fieldError.map( function (item,index,array)  {
+            return item;
+          }.bind(this));
           browserHistory.push('/home');
-        });
+        }.bind(this));
       }
     });
   }
@@ -59,13 +65,13 @@ class RegistrationForm extends React.Component {
     }
     callback();
   }
+  //进行注册成员时间限定的函数，规定注册成员必须大于15周岁且生于1970年之后
   disabledDate = (current) => {
     let oldestDate = new Date(1970,0);
-    //现在只能做到限制1970年之后和当前日期之前，不知道怎么进一步限制
-    //let newestDate = new Date();
-    //newestDate.setFullYear(Date.now().getFullYear() - 15);
-    //console.log(newestDate);
-    return current && (current < oldestDate) || (current > Date.now()); 
+    let now = new Date(Date.now());
+    let newestDate = new Date();
+    newestDate.setFullYear(now.getFullYear() - 15);
+    return current && (current < oldestDate) || (current > newestDate); 
   }
   render() {
     const { getFieldDecorator } = this.props.form;
@@ -80,6 +86,8 @@ class RegistrationForm extends React.Component {
       },
     };
     return (
+      <div>
+        <Warning  value={this.state.fieldErrors}/>
       <Form onSubmit={this.handleSubmit} className="register-form">
         <FormItem
           {...formItemLayout}
@@ -246,6 +254,7 @@ class RegistrationForm extends React.Component {
           <br />Already have an account <Link to='/login'>Login</Link>
         </FormItem>
       </Form>
+      </div>
     );
   }
 }
