@@ -27,10 +27,13 @@ class NormalLoginForm extends React.Component {
           dataType:'json',
           data:JSON.stringify(postLogin),
           scriptCharset:'utf-8',
-          success:function(data){
+          success:function(response){
             console.log('success login');
-            this.state.fieldErrors = data.map( function (item,index,array)  {
-              return item;
+            let resp = JSON.parse(response);
+            this.setState({
+              fieldErrors : resp.fieldError.map( function (item,index,array)  {
+                return item;
+              }.bind(this))
             });//对于返回的fieldError进行显示处理            
             browserHistory.push('/home');
           }.bind(this),

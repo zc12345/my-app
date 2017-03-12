@@ -35,12 +35,13 @@ class RegistrationForm extends React.Component {
           values.token = json.newToken;
         });
         //提交表单
-        var v = $.post('register', JSON.stringify(values), function (fieldError) {
+        var v = $.post('register', JSON.stringify(values), function (response) {
           console.log('succeed to post');
-          console.log('fieldErrors :'+ fieldError);
-          this.state.fieldErrors = fieldError.map( function (item,index,array)  {
-            return item;
-          }.bind(this));
+          let resp = JSON.parse(response);
+          this.setState({
+            fieldErrors : resp.fieldError.map( function (item,index,array)  {
+              return item;
+            }.bind(this))});
           browserHistory.push('/home');
         }.bind(this));
       }
