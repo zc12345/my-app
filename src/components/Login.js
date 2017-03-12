@@ -24,7 +24,7 @@ class NormalLoginForm extends React.Component {
         };
         localStorage.id = values.id;
         console.log(localStorage);
-        browserHistory.push('/');
+        browserHistory.push('/home');
 /*        console.log(JSON.stringify(postLogin));
         $.ajax({
           url:'login',

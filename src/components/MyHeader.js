@@ -16,13 +16,13 @@ export default class MyHeader extends React.Component{
         <Menu
           theme="dark"
           mode="horizontal"
-          defaultSelectedKeys={['2']}
+          defaultSelectedKeys={['user']}
           style={{ lineHeight: '64px' }}
         >
-          <Menu.Item key="1"><Link to='/home'>{this.state.user}</Link></Menu.Item>
-          <Menu.Item key="2"><Link onClick={this.props.callbackParent}>注销</Link></Menu.Item>
-          <Menu.Item key="3"><Link to='/manage'>管理</Link></Menu.Item>
-          <Menu.Item key="4"><Link to='/home'>主页</Link></Menu.Item>
+          <Menu.Item key="user"><Link to='/user'>{this.state.user}</Link></Menu.Item>
+          <Menu.Item key="logout"><Link onClick={this.props.callbackParent}>注销</Link></Menu.Item>
+          <Menu.Item key="manage"><Link to='/manage'>管理</Link></Menu.Item>
+          <Menu.Item key="home"><Link to='/home'>主页</Link></Menu.Item>
         </Menu>
       </Header>                
             );
@@ -33,11 +33,11 @@ export default class MyHeader extends React.Component{
             <Menu
               theme="dark"
               mode="horizontal"
-              defaultSelectedKeys={['2']}
+              defaultSelectedKeys={['login']}
               style={{ lineHeight: '64px' }}
             >
-              <Menu.Item key="1"><Link to='/login'>登录</Link></Menu.Item>
-              <Menu.Item key="2"><Link to='/register'>注册</Link></Menu.Item>
+              <Menu.Item key="login"><Link to='/login'>登录</Link></Menu.Item>
+              <Menu.Item key="register"><Link to='/register'>注册</Link></Menu.Item>
             </Menu>            
           </Header>
         )

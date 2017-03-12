@@ -22,7 +22,7 @@ class Main extends React.Component {
   onChildChanged = (e) => {
     localStorage.clear();
     this.setState({userid:''});
-    browserHistory.push('/');
+    browserHistory.push('/login');
   } 
   render() {
     return (
