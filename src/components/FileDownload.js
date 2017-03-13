@@ -24,8 +24,6 @@ const columns = [{
   render: (text, record) => (
     <span>
       <Button type="primary" icon="download" shape="circle" />
-      <span className="ant-divider" />
-      <a href="#"><Icon type="delete" />删除</a>
     </span>
   ),
 }];
@@ -47,7 +45,7 @@ const data = [{
   description: 'Sidney No. 1 Lake Park',
 }];
 
-export default class FileList extends React.Component {
+export default class FileDownload extends React.Component {
     render(){
         return (
             <Table 

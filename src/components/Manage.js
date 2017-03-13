@@ -22,7 +22,7 @@ export default class Manage extends React.Component {
               <Menu.Item key="issueHomework">发布作业</Menu.Item>
               <Menu.Item key="Homework">全部作业</Menu.Item>
               <Menu.Item key="homeworkList"><Link to='/homeworkList'>查看提交</Link></Menu.Item>
-              <Menu.Item key="upload"><Link to='/upload'>上传文件</Link></Menu.Item>
+              <Menu.Item key="upload"><Link to='/fileupload'>上传文件</Link></Menu.Item>
               <Menu.Item key="filelist"><Link to='/filelist'>文件列表</Link></Menu.Item>
             </SubMenu>
             <SubMenu key="members" title={<span><Icon type="laptop" />部员管理</span>}>

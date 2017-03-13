@@ -6,3 +6,23 @@
   margin: 16px 24px 16px 0;
   float: left;
 } 
+.carousel > div {
+  width: 100%;
+  height: 300px;
+  padding: 20px;
+  background: cornflowerblue;
+}
+.cardrow {
+  background: #ECECEC;
+  padding: 30px;
+}
+/* Increase grid spacing of 16px  */
+.cardrow .row1 {
+  margin-left: -8px;
+  margin-right: -8px;
+}
+.cardrow .row1 > col {
+  padding: 0 8px;
+  height: 100px;
+  overflow: hidden;
+}

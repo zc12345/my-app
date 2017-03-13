@@ -22,12 +22,12 @@ export default class Home extends React.Component {
             <SubMenu key="user" title={<span><Icon type="user" />个人中心</span>}>
               <Menu.Item key="userinfo"><Link to='/userinfo'>修改信息</Link></Menu.Item>
               <Menu.Item key="submit"><Link to='/upload'>提交作业</Link></Menu.Item>
-              <Menu.Item key="download">文件下载</Menu.Item>
-              <Menu.Item key="other">其他</Menu.Item>
+              <Menu.Item key="download"><Link to='/filedownload'>文件下载</Link></Menu.Item>
+              <Menu.Item key="other"><Link to='/homeworkhistory'>作业历史</Link></Menu.Item>
             </SubMenu>
             <SubMenu key="notice" title={<span><Icon type="notification" />最新通知</span>}>
-              <Menu.Item key="meeting">例会通知</Menu.Item>
-              <Menu.Item key="homework">作业通知</Menu.Item>
+              <Menu.Item key="meetingnotice"><Link to='/meetingnotice'>例会通知</Link></Menu.Item>
+              <Menu.Item key="homeworknotice"><Link to='/homeworknotice'>作业通知</Link></Menu.Item>
             </SubMenu>
           </Menu>
         </Sider>

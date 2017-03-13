@@ -2,32 +2,21 @@ import React from 'react';
 import { Table, Icon, Button } from 'antd';
 
 const columns = [{
-  title: '文件',
+  title: '作业',
   dataIndex: 'file',
   key: 'file',
-},{
-  title: '发布者',
-  dataIndex: 'name',
-  key: 'name',
-  render: text => <a href="#">{text}</a>,
 }, {
   title: '部门',
   dataIndex: 'dept',
   key: 'dept',
+},{
+  title: '次数',
+  dataIndex: 'times',
+  key: 'times',
 }, {
   title: '上传时间',
   dataIndex: 'uploadtime',
   key: 'uploadtime'
-}, {
-  title: 'Action',
-  key: 'action',
-  render: (text, record) => (
-    <span>
-      <Button type="primary" icon="download" shape="circle" />
-      <span className="ant-divider" />
-      <a href="#"><Icon type="delete" />删除</a>
-    </span>
-  ),
 }];
 
 const data = [{
@@ -47,7 +36,7 @@ const data = [{
   description: 'Sidney No. 1 Lake Park',
 }];
 
-export default class FileList extends React.Component {
+export default class HomeworkHistory extends React.Component {
     render(){
         return (
             <Table 

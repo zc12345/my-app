@@ -9,7 +9,7 @@ import {Link, browserHistory} from 'react-router';
 import 'antd/dist/antd.css';
 //import '../styles/Main.css';
 
-import { Layout, Breadcrumb } from 'antd';
+import { Layout, Breadcrumb, BackTop } from 'antd';
 const { Content, Footer } = Layout;
 
 import MyHeader from './MyHeader'; 
@@ -39,6 +39,12 @@ class Main extends React.Component {
             <center>
               {this.props.children}
             </center>
+        </div>
+        <div>
+          <BackTop />
+          Scroll down to see the bottom-right
+          <strong style={{ color: 'rgba(64, 64, 64, 0.6)' }}> gray </strong>
+          button.
         </div>
       </Content>
       <Footer style={{ textAlign: 'center' }}>
