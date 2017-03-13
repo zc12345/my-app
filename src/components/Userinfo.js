@@ -1,9 +1,11 @@
 import React from 'react';
 
-export default class User extends React.Component{
-    render(){
-        return (
-            <p>User</p>
-        );
-    }
+const Userinfo = () =>{
+    return (
+        <div>
+            <p>Userinfo</p>
+        </div>
+    )
 }
+
+export default Userinfo;

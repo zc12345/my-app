@@ -2,21 +2,22 @@ import React from 'react';
 
 import { Upload, Icon, message } from 'antd';
 const Dragger = Upload.Dragger;
-
+//import Warning from './Warning'
 const props = {
   name: 'file',
   multiple: true,
   showUploadList: false,
-  action: '//jsonplaceholder.typicode.com/posts/',
+  action: '//jsonplaceholder.typicode.com/posts/',//文件上传地址
+  accept:'*.pdf,*.doc,*.docx',//支持上传的文件格式
   onChange(info) {
     const status = info.file.status;
     if (status !== 'uploading') {
       console.log(info.file, info.fileList);
     }
     if (status === 'done') {
-      message.success(`${info.file.name} file uploaded successfully.`);
+      message.success(`${info.file.name} 文件上传成功`);
     } else if (status === 'error') {
-      message.error(`${info.file.name} file upload failed.`);
+      message.error(`${info.file.name} 文件上传失败`);
     }
   },
 };

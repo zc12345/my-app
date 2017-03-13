@@ -11,6 +11,8 @@ import Upload from './components/FileUpload';
 import Manage from './components/Manage';
 import HomeworkList from './components/HomeworkList';
 import Interview from './components/IntervieweeList';
+import FileList from './components/FileList';
+import Checkin from './components/Checkin';
 import Home from './components/Home';
 
 export default class MyRoute extends React.Component {
@@ -25,7 +27,9 @@ export default class MyRoute extends React.Component {
                     </Route>
                     <Route path='/manage' component={Manage}>
                         <Route path='/interview' component={Interview}/>
-                        <Route path='/homeworkList' component={HomeworkList}/>            
+                        <Route path='/homeworkList' component={HomeworkList}/>
+                        <Route path='/filelist' component={FileList} /> 
+                        <Route path='/checkin' component={Checkin}/>      
                     </Route>
                     <Route path='/home' component={Home}/>
                     <Route path='/upload' component={Upload}/>

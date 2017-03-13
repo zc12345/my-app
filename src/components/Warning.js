@@ -4,7 +4,6 @@ import { Alert } from 'antd';
 const onClose = function (e) {
   console.log(e, 'I was closed.');
 };
-//目前的做法是把所有的返回error放在顶部一行上面，等待后期的改进
 export default class Warning extends React.Component{
     render(){
         console.log(this.props.value);
