@@ -1,0 +1,15 @@
+.layout{
+    background-color: palegreen ;
+}
+MyHeader{
+    background-color: transparent;
+}
+.center {
+    background-color: springgreen;
+    padding: 24;
+    min-height: 280;
+}
+.footer {
+    background-color: palegreen;
+    text-align: center;
+}

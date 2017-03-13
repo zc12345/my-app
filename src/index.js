@@ -6,7 +6,7 @@ import {Provider} from 'react-redux';
 import todoApp from './reducers';
 import App from './components/App';
 //App test component
-import Test from './components/Test';
+import Test from './components/FileUpload';
 import MyRoute from './MyRoute';
 
 import './styles/index.css';

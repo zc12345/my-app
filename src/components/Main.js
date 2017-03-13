@@ -7,6 +7,7 @@
 import React from 'react';
 import {Link, browserHistory} from 'react-router';
 import 'antd/dist/antd.css';
+//import '../styles/Main.css';
 
 import { Layout, Breadcrumb } from 'antd';
 const { Content, Footer } = Layout;
