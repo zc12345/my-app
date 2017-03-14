@@ -12,11 +12,15 @@ export default class Home extends React.Component {
     render(){
       return (
       <Layout style={{ padding: '0', background: '#fff' }}>
-        <Sider width={200} style={{ background: '#fff' }}>
+        <Sider 
+        breakpoint='md'
+        collapsedWidth="0"
+        onCollapse={(collapsed, type) => { console.log(collapsed, type); }}
+        width={200} style={{ background: '#fff' }}>
           <Menu theme="dark"
             mode="inline"
-            defaultSelectedKeys={['userinfo']}
-            defaultOpenKeys={['user']}
+            defaultSelectedKeys={['homeworknotice']}
+            defaultOpenKeys={['notice']}
             style={{ height: '100%' }}
           >
             <SubMenu key="user" title={<span><Icon type="user" />个人中心</span>}>

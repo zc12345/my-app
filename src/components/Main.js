@@ -29,12 +29,7 @@ class Main extends React.Component {
     return (
     <Layout className="layout">
       <MyHeader user={this.state.userid} callbackParent={this.onChildChanged}/>
-      <Content style={{ padding: '0 50px' }}>
-        <Breadcrumb style={{ margin: '12px 0' }}>
-          <Breadcrumb.Item><Link to='/Home'>Home</Link></Breadcrumb.Item>
-          <Breadcrumb.Item>List</Breadcrumb.Item>
-          <Breadcrumb.Item></Breadcrumb.Item>
-        </Breadcrumb>
+      <Content style={{ padding: '50px' }}>
         <div style={{ background: '#fff', padding: 24, minHeight: 280 }}>
             <center>
               {this.props.children}
@@ -42,9 +37,6 @@ class Main extends React.Component {
         </div>
         <div>
           <BackTop />
-          Scroll down to see the bottom-right
-          <strong style={{ color: 'rgba(64, 64, 64, 0.6)' }}> gray </strong>
-          button.
         </div>
       </Content>
       <Footer style={{ textAlign: 'center' }}>

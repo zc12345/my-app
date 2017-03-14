@@ -1,16 +1,15 @@
+//以卡牌形式展示部门信息
 import React from 'react';
-import { Carousel, Card, Col, Row  } from 'antd';
-import '../styles/Home.css'; 
 
-const Home =()=>{
+import { Card, Col, Row, Upload, Icon } from 'antd';
+
+export default class DeptList extends React.Component{
+    handleChange = () =>{
+        console.log("add");
+    }
+    render() {
     return (
         <div>
-            <Carousel autoplay effect="fade" className="carousel">
-                <div ><h3>1</h3></div>
-                <div ><h3>2</h3></div>
-                <div ><h3>3</h3></div>
-                <div ><h3>4</h3></div>
-            </Carousel>
             <div className="cardrow">
                 <Row className="row1" gutter={16}>
                 <Col lg={8} md={12} sm={24}>
@@ -44,10 +43,15 @@ const Home =()=>{
                     <p>www.instagram.com</p>
                     </div>
                 </Card>
+                </Col>
+                <Col lg={8} md={12} sm={24}>
+                <Card bordered={false}>
+                    <Icon type="plus" />
+                </Card>
                 </Col>                
                 </Row>
             </div>
         </div>
     );
+    }
 }
-export default Home;

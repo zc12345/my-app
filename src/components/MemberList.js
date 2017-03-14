@@ -1,53 +1,79 @@
 import React from 'react';
-import { Table, Icon, Button, Input, Popconfirm  } from 'antd';
+import { Table, Icon, Button, Input, Popconfirm, Card  } from 'antd';
 import EditableCell from './EditableCell';
  
-export default class EditableTable extends React.Component {
+export default class MemberList extends React.Component {
   constructor(props) {
     super(props);
     this.columns = [{
-      title: 'name',
+      title: '学号',
+      dataIndex: 'id',
+      width: '15%',
+      render: (text, record, index) => this.renderColumns(this.state.data, index, 'id', text),
+    }, {
+      title: '姓名',
       dataIndex: 'name',
-      width: '25%',
+      width: '10%',
       render: (text, record, index) => this.renderColumns(this.state.data, index, 'name', text),
     }, {
-      title: 'age',
+      title: '性别',
+      dataIndex: 'gender',
+      width: '10%',
+      render: (text, record, index) => this.renderColumns(this.state.data, index, 'gender', text),
+    }, {
+      title: '年龄',
       dataIndex: 'age',
-      width: '15%',
+      width: '10%',
       render: (text, record, index) => this.renderColumns(this.state.data, index, 'age', text),
     }, {
-      title: 'address',
-      dataIndex: 'address',
-      width: '40%',
-      render: (text, record, index) => this.renderColumns(this.state.data, index, 'address', text),
+      title: 'QQ',
+      dataIndex: 'QQ',
+      width: '15%',
+      render: (text, record, index) => this.renderColumns(this.state.data, index, 'QQ', text),
     }, {
-      title: 'operation',
+      title: '手机',
+      dataIndex: 'phoneNumber',
+      width: '20%',
+      render: (text, record, index) => this.renderColumns(this.state.data, index, 'phoneNumber', text),
+    }, {
+      title: '操作',
       dataIndex: 'operation',
       render: (text, record, index) => {
         const { editable } = this.state.data[index].name;
         return (
+          <span>
           <div className="editable-row-operations" style={{marginRight:'8px'}}>
             {
               editable ?
                 <span>
-                  <a onClick={() => this.editDone(index, 'save')}>Save</a>
-                  <Popconfirm title="Sure to cancel?" onConfirm={() => this.editDone(index, 'cancel')}>
-                    <a>Cancel</a>
+                  <a onClick={() => this.editDone(index, 'save')}>保存 </a>
+                  <Popconfirm title="放弃更改？" onConfirm={() => this.editDone(index, 'cancel')}>
+                    <a>取消</a>
                   </Popconfirm>
                 </span>
                 :
                 <span>
-                  <a onClick={() => this.edit(index)}>Edit</a>
+                  <a onClick={() => this.edit(index)}><Icon type="edit" />修改</a>
                 </span>
             }
+          <span className="ant-divider" />
+          <a href="#"><Icon type="delete" />删除</a>
           </div>
+          </span>
         );
       },
     }];
     this.state = {
       data: [{
         key: '0',
+        id: {
+          value: 'Edward King 0',
+        },
         name: {
+          editable: false,
+          value: 'Edward King 0',
+        },
+        gender: {
           editable: false,
           value: 'Edward King 0',
         },
@@ -55,9 +81,14 @@ export default class EditableTable extends React.Component {
           editable: false,
           value: '32',
         },
-        address: {
-          value: 'London, Park Lane no. 0',
+        QQ: {
+          editable: false,
+          value: 'Edward King 0',
         },
+        phoneNumber: {
+          editable: false,
+          value: 'London, Park Lane no. 0',
+        }
       }],
     };
   }
@@ -113,6 +144,13 @@ export default class EditableTable extends React.Component {
       return obj;
     });
     const columns = this.columns;
-    return <Table bordered dataSource={dataSource} columns={columns} />;
+    return (
+      <div>
+        <Table bordered dataSource={dataSource} columns={columns} />
+        <Card bordered={false}>
+        <Icon type="plus" />
+        </Card>
+      </div>
+    );
   }
 }

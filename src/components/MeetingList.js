@@ -1,14 +1,9 @@
 //已经发布的所有例会及其详细信息
-//发布的全部作业的列表
 import React from 'react';
 
 import { Table, Icon, Button } from 'antd';
 
 const columns = [{
-  title: '作业',
-  dataIndex: 'homework',
-  key: 'homework',
-},{
   title: '发布者',
   dataIndex: 'name',
   key: 'name',
@@ -18,17 +13,13 @@ const columns = [{
   dataIndex: 'dept',
   key: 'dept',
 }, {
-  title: '作业批次',
+  title: '例会次数',
   dataIndex: 'times',
   key: 'times'
 }, {
-  title: '发布时间',
-  dataIndex: 'issuetime',
+  title: '例会时间',
+  dataIndex: 'meetingtime',
   key: 'issuetime'
-}, {
-  title: '截止时间',
-  dataIndex: 'deadline',
-  key: 'deadline'
 }, {
   title: 'Action',
   key: 'action',

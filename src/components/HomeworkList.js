@@ -1,6 +1,5 @@
 import React from 'react';
 import { Table, Icon, Button, Input, Popconfirm  } from 'antd';
-import EditableTable from './EditableTable';
 
 const columns = [{
   title: '姓名',

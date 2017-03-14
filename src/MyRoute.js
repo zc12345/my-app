@@ -17,6 +17,12 @@ import HomeworkList from './components/HomeworkList';
 import Interview from './components/IntervieweeList';
 import FileList from './components/FileList';
 import Checkin from './components/Checkin';
+import MemberList from './components/MemberList';
+import DeptList from './components/DeptList';
+import MeetingList from './components/MeetingList';
+import IssueList from './components/IssueList';
+import MeetingIssue from './components/MeetingIssue';
+import HomeworkIssue from './components/HomeworkIssue';
 import Home from './components/Home';
 
 export default class MyRoute extends React.Component {
@@ -36,10 +42,16 @@ export default class MyRoute extends React.Component {
                     </Route>
                     <Route path='/manage' component={Manage}>
                         <Route path='/interview' component={Interview}/>
+                        <Route path='/memberlist' component={MemberList}/>
+                        <Route path='/deptlist' component={DeptList}/>
                         <Route path='/homeworkList' component={HomeworkList}/>
-                        <Route path='/filelist' component={FileList} /> 
+                        <Route path='/filelist' component={FileList} />
+                        <Route path='/meetinglist' component={MeetingList}/>
+                        <Route path='/issuelist' component={IssueList}/> 
                         <Route path='/checkin' component={Checkin}/>
                         <Route path='/fileupload' component={Upload}/>
+                        <Route path='/meetingissue' component={MeetingIssue}/>
+                        <Route path='/homeworkissue' component={HomeworkIssue}/>
                     </Route>
                     <Route path='/home' component={Home}/>
                     <Route path='/upload' component={Upload}/>
