@@ -40,17 +40,17 @@ const columns = [{
 
 const data = [{
   key: '1',
-  file: 'John Brown',
+  fileName: 'John Brown',
   uploadtime: 32,
   description: 'New York No. 1 Lake Park',
 }, {
   key: '2',
-  file: 'Jim Green',
+  fileName: 'Jim Green',
   uploadtime: 42,
   description: 'London No. 1 Lake Park',
 }, {
   key: '3',
-  file: 'Joe Black',
+  fileName: 'Joe Black',
   uploadtime: 32,
   description: 'Sidney No. 1 Lake Park',
 }];

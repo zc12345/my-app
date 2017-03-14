@@ -3,7 +3,7 @@ import React from 'react';
 import 'antd/dist/antd.css';
 import '../styles/Register.css'
 
-import { Form, Input, Tooltip, Icon, Checkbox, Button, DatePicker, Select } from 'antd';
+import {Card, Form, Input, Tooltip, Icon, Checkbox, Button, DatePicker, Select, Col } from 'antd';
 const FormItem = Form.Item;
 const Option = Select.Option;
 import { Link, browserHistory } from 'react-router';
@@ -252,7 +252,7 @@ class RegistrationForm extends React.Component {
               )}
           </FormItem>
           <FormItem {...tailFormItemLayout}>
-            <Button type="primary" htmlType="submit" size="large">Register</Button>
+            <Button type="primary" htmlType="submit" size="large">注册</Button>
             <br />Already have an account <Link to='/login'>Login</Link>
           </FormItem>
         </Form>
@@ -261,8 +261,16 @@ class RegistrationForm extends React.Component {
   }
 }
 
-const Register = Form.create()(RegistrationForm);
+const MyRegister = Form.create()(RegistrationForm);
 
-RegistrationForm.defaultProps = {};
+const Register =() =>{
+  return (
+    <div>
+      <Card style={{background:"transparent"}}>
+      <MyRegister/>
+      </Card>
+    </div>
+  );
+}
 
 export default Register;

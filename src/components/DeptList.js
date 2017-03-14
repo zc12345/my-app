@@ -1,11 +1,14 @@
 //以卡牌形式展示部门信息
 import React from 'react';
-
+import $ from 'jquery';
 import { Card, Col, Row, Upload, Icon } from 'antd';
 
 export default class DeptList extends React.Component{
-    handleChange = () =>{
+    addDept = () =>{
         console.log("add");
+    }
+    deleteDept = () =>{
+        console.log("删除");
     }
     render() {
     return (
@@ -28,7 +31,7 @@ export default class DeptList extends React.Component{
                 </Col>
                 <Col lg={8} md={12} sm={24}>
                     <div>
-                    <Card title="Card title" bordered={false}>
+                    <Card title="Card title" bordered={false} extra={<Icon type="delete"onClick={this.deleteDept}/>}>
                         致力于微小而美好的改变，力求在细节上精益求精，不仅让业务产品更加实用和可靠，而且还能让『用户』感到小惊喜。
                     </Card>
                     </div>
@@ -45,7 +48,7 @@ export default class DeptList extends React.Component{
                 </Card>
                 </Col>
                 <Col lg={8} md={12} sm={24}>
-                <Card bordered={false}>
+                <Card bordered={false} onClick={this.addDept}>
                     <Icon type="plus" />
                 </Card>
                 </Col>                
