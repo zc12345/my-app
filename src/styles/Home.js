@@ -24,9 +24,7 @@ export default StyleSheet.create({
     'marginLeft': [{ 'unit': 'px', 'value': -8 }],
     'marginRight': [{ 'unit': 'px', 'value': -8 }]
   },
-  'cardrow row1 > col': {
-    'padding': [{ 'unit': 'px', 'value': 0 }, { 'unit': 'px', 'value': 8 }, { 'unit': 'px', 'value': 0 }, { 'unit': 'px', 'value': 8 }],
-    'height': [{ 'unit': 'px', 'value': 100 }],
-    'overflow': 'hidden'
+  'cardrow row1 > div': {
+    'padding': [{ 'unit': 'px', 'value': 8 }, { 'unit': 'px', 'value': 8 }, { 'unit': 'px', 'value': 8 }, { 'unit': 'px', 'value': 8 }]
   }
 });

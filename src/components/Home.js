@@ -12,17 +12,27 @@ const Home =()=>{
                 <div ><h3>4</h3></div>
             </Carousel>
             <div className="cardrow">
-                <Row className="row1">
-                <Col span="11">
+                <Row className="row1" gutter={16}>
+                <Col span="8">
+                    <div>
                     <Card title="Card title" bordered={false}>
                         致力于微小而美好的改变，力求在细节上精益求精，不仅让业务产品更加实用和可靠，而且还能让『用户』感到小惊喜。
                     </Card>
+                    </div>
                 </Col>
-                <Col span="2"/>
-                <Col span="11">
+                <Col span="8">
+                    <div>
                     <Card title="Card title" bordered={false}>
-                        制定通俗而科学的设计原则、运用面向对象的方法、使用一致的文档沟通机制，给予研发团队一种高确定性、低熵值的研发状态。
+                        致力于微小而美好的改变，力求在细节上精益求精，不仅让业务产品更加实用和可靠，而且还能让『用户』感到小惊喜。
                     </Card>
+                    </div>
+                </Col>
+                <Col span="8">
+                    <div>
+                    <Card title="Card title" bordered={false}>
+                        致力于微小而美好的改变，力求在细节上精益求精，不仅让业务产品更加实用和可靠，而且还能让『用户』感到小惊喜。
+                    </Card>
+                    </div>
                 </Col>
                 </Row>
                 <Row/>   

@@ -1,11 +1,12 @@
-//上传的文件列表
+//发布的全部作业的列表
 import React from 'react';
+
 import { Table, Icon, Button } from 'antd';
 
 const columns = [{
-  title: '文件',
-  dataIndex: 'file',
-  key: 'file',
+  title: '作业',
+  dataIndex: 'homework',
+  key: 'homework',
 },{
   title: '发布者',
   dataIndex: 'name',
@@ -16,16 +17,22 @@ const columns = [{
   dataIndex: 'dept',
   key: 'dept',
 }, {
-  title: '上传时间',
-  dataIndex: 'uploadtime',
-  key: 'uploadtime'
+  title: '作业批次',
+  dataIndex: 'times',
+  key: 'times'
+}, {
+  title: '发布时间',
+  dataIndex: 'issuetime',
+  key: 'issuetime'
+}, {
+  title: '截止时间',
+  dataIndex: 'deadline',
+  key: 'deadline'
 }, {
   title: 'Action',
   key: 'action',
   render: (text, record) => (
     <span>
-      <Button type="primary" icon="download" shape="circle" />
-      <span className="ant-divider" />
       <a href="#"><Icon type="delete" />删除</a>
     </span>
   ),
@@ -48,7 +55,7 @@ const data = [{
   description: 'Sidney No. 1 Lake Park',
 }];
 
-export default class FileList extends React.Component {
+export default class IssueList extends React.Component {
     render(){
         return (
             <Table 
