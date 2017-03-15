@@ -1,156 +1,117 @@
+//部门成员列表
 import React from 'react';
-import { Table, Icon, Button, Input, Popconfirm, Card  } from 'antd';
-import EditableCell from './EditableCell';
- 
+import { Table, Icon, Button, Input,  Card, Select  } from 'antd';
+import {Link} from 'react-router';
+import Warning from './Warning';
+import $ from 'jquery';
+
+const columns = [{
+  title: '学号',
+  dataIndex: 'id',
+  key: 'id',
+},{
+  title: '姓名',
+  dataIndex: 'name',
+  key: 'name',
+}, {
+  title: '部门',
+  dataIndex: 'dept',
+  key: 'dept',
+}, {
+  title: '性别',
+  dataIndex: 'gender',
+  key: 'gender'
+}, {
+  title: '年龄',
+  dataIndex: 'age',
+  key: 'age'
+}, {
+  title: 'QQ',
+  dataIndex: 'QQ',
+  key: 'QQ'
+}, {
+  title: '手机',
+  dataIndex: 'phoneNumber',
+  key: 'phoneNumber'
+}, {
+  title: 'Action',
+  key: 'action',
+  render: (text, record) => (
+    <span>
+      <a href="#"><Icon type="edit" />修改</a>
+      <span className="ant-divider" />
+      <a href="#"><Icon type="delete" />删除</a>
+    </span>
+  ),
+}];
+
+const data = [{
+  key: '1',
+  file: 'John Brown',
+  uploadtime: 32,
+  description: 'New York No. 1 Lake Park',
+}, {
+  key: '2',
+  file: 'Jim Green',
+  uploadtime: 42,
+  description: 'London No. 1 Lake Park',
+}, {
+  key: '3',
+  file: 'Joe Black',
+  uploadtime: 32,
+  description: 'Sidney No. 1 Lake Park',
+}];
+
 export default class MemberList extends React.Component {
-  constructor(props) {
-    super(props);
-    this.columns = [{
-      title: '学号',
-      dataIndex: 'id',
-      width: '15%',
-      render: (text, record, index) => this.renderColumns(this.state.data, index, 'id', text),
-    }, {
-      title: '姓名',
-      dataIndex: 'name',
-      width: '10%',
-      render: (text, record, index) => this.renderColumns(this.state.data, index, 'name', text),
-    }, {
-      title: '性别',
-      dataIndex: 'gender',
-      width: '10%',
-      render: (text, record, index) => this.renderColumns(this.state.data, index, 'gender', text),
-    }, {
-      title: '年龄',
-      dataIndex: 'age',
-      width: '10%',
-      render: (text, record, index) => this.renderColumns(this.state.data, index, 'age', text),
-    }, {
-      title: 'QQ',
-      dataIndex: 'QQ',
-      width: '15%',
-      render: (text, record, index) => this.renderColumns(this.state.data, index, 'QQ', text),
-    }, {
-      title: '手机',
-      dataIndex: 'phoneNumber',
-      width: '20%',
-      render: (text, record, index) => this.renderColumns(this.state.data, index, 'phoneNumber', text),
-    }, {
-      title: '操作',
-      dataIndex: 'operation',
-      render: (text, record, index) => {
-        const { editable } = this.state.data[index].name;
-        return (
-          <span>
-          <div className="editable-row-operations" style={{marginRight:'8px'}}>
-            {
-              editable ?
-                <span>
-                  <a onClick={() => this.editDone(index, 'save')}>保存 </a>
-                  <Popconfirm title="放弃更改？" onConfirm={() => this.editDone(index, 'cancel')}>
-                    <a>取消</a>
-                  </Popconfirm>
-                </span>
-                :
-                <span>
-                  <a onClick={() => this.edit(index)}><Icon type="edit" />修改</a>
-                </span>
-            }
-          <span className="ant-divider" />
-          <a href="#"><Icon type="delete" />删除</a>
-          </div>
-          </span>
-        );
-      },
-    }];
-    this.state = {
-      data: [{
-        key: '0',
-        id: {
-          value: 'Edward King 0',
-        },
-        name: {
-          editable: false,
-          value: 'Edward King 0',
-        },
-        gender: {
-          editable: false,
-          value: 'Edward King 0',
-        },
-        age: {
-          editable: false,
-          value: '32',
-        },
-        QQ: {
-          editable: false,
-          value: 'Edward King 0',
-        },
-        phoneNumber: {
-          editable: false,
-          value: 'London, Park Lane no. 0',
-        }
-      }],
-    };
-  }
-  renderColumns(data, index, key, text) {
-    const { editable, status } = data[index][key];
-    if (typeof editable === 'undefined') {
-      return text;
+    state = {
+        actionErrors:[],
+        actionMessages:[],
+        fieldErrors:[],
+        token:[],
+        data:[],
+        dept:null
     }
-    return (<EditableCell
-      editable={editable}
-      value={text}
-      onChange={value => this.handleChange(key, index, value)}
-      status={status}
-    />);
-  }
-  handleChange(key, index, value) {
-    const { data } = this.state;
-    data[index][key].value = value;
-    this.setState({ data });
-  }
-  edit(index) {
-    const { data } = this.state;
-    Object.keys(data[index]).forEach((item) => {
-      if (data[index][item] && typeof data[index][item].editable !== 'undefined') {
-        data[index][item].editable = true;
-      }
-    });
-    this.setState({ data });
-  }
-  editDone(index, type) {
-    const { data } = this.state;
-    Object.keys(data[index]).forEach((item) => {
-      if (data[index][item] && typeof data[index][item].editable !== 'undefined') {
-        data[index][item].editable = false;
-        data[index][item].status = type;
-      }
-    });
-    this.setState({ data }, () => {
-      Object.keys(data[index]).forEach((item) => {
-        if (data[index][item] && typeof data[index][item].editable !== 'undefined') {
-          delete data[index][item].status;
+    handlerDelete = (key) =>{
+        
+    }
+    handleSelectDept = (dept) =>{
+        this.setState({dept:dept});
+    }
+    handleGetMember = (dept) =>{
+        if(this.state.dept===null){
+            this.setState({fieldErrors:["请选择部门！"]});
+        }else{
+            $.post("",this.state.dept,(json)=>{
+                console.log(json);
+
+            })
         }
-      });
-    });
-  }
-  render() {
-    const { data } = this.state;
-    const dataSource = data.map((item) => {
-      const obj = {};
-      Object.keys(item).forEach((key) => {
-        obj[key] = key === 'key' ? item[key] : item[key].value;
-      });
-      return obj;
-    });
-    const columns = this.columns;
-    return (
-      <div>
-        <Table bordered dataSource={dataSource} columns={columns} />
-        <Card bordered={false}>
-        <Icon type="plus" />
-        </Card>
-      </div>
-    );
-  }
+    }
+    render(){
+        return (
+        <div>
+            <Warning value={this.state.actionErrors}/>
+            <Warning value={this.state.fieldErrors}/>
+            <Warning value={this.state.actionMessages}/>
+            <div>
+                部门
+                <Select defaultValue="java" style={{ width: 120,padding:'20px' }} onChange={this.handleSelectDept}>
+                <Option value="1">C++</Option>
+                <Option value="2">python</Option>
+                <Option value="3">java</Option>
+                </Select>
+                <div style={{ marginBottom: 16 }}>
+                <Button type="primary" onClick={this.handleGetMember}>检索</Button>
+                </div>
+                {/*<div style={{ marginBottom: 16 }}>
+                <Button type="primary" onClick={this.handlePost}>保存</Button>
+                </div>*/}
+            </div>
+            <Table 
+                columns={columns} dataSource={data} 
+                expandedRowRender={record => <p>{record.description}</p>}
+            />
+        </div>
+        );
+    }
 }

@@ -19,6 +19,7 @@ import FileList from './components/FileList';
 import Checkin from './components/Checkin';
 import MemberList from './components/MemberList';
 import DeptList from './components/DeptList';
+import AddDept from './components/AddDept';
 import MeetingList from './components/MeetingList';
 import IssueList from './components/IssueList';
 import MeetingIssue from './components/MeetingIssue';
@@ -44,6 +45,7 @@ export default class MyRoute extends React.Component {
                         <Route path='/interview' component={Interview}/>
                         <Route path='/memberlist' component={MemberList}/>
                         <Route path='/deptlist' component={DeptList}/>
+                        <Route path='/adddept' component={AddDept}/>
                         <Route path='/homeworkList' component={HomeworkList}/>
                         <Route path='/filelist' component={FileList} />
                         <Route path='/meetinglist' component={MeetingList}/>

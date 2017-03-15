@@ -8,9 +8,22 @@ import { Form, Icon, Input, Button, Checkbox } from 'antd';
 const FormItem = Form.Item;
 import Warning from './Warning';
 
+const isEmpty = (errors) =>{
+  for (let error in errors){return false;}
+  return true;
+}
+
 class NormalLoginForm extends React.Component {
   state = {
-    fieldErrors :[]
+    fieldErrors :[],
+    token:''
+  }
+  //获取token值
+  componentWillMount() {
+    $.post("generateToken",function(json){
+      console.log(json);
+      this.setState({token:json.token});
+    }.bind(this))
   }
   //提交表单
   handleSubmit = (e) => {
@@ -20,34 +33,21 @@ class NormalLoginForm extends React.Component {
         console.log('Received values of form: ', values);
         var postLogin = {
             id : values.id,
-            password : values.password
+            password : values.password,
+            token: this.state.token
         };
-        localStorage.id = values.id;
-        console.log(localStorage);
-        browserHistory.push('/home');
-/*        console.log(JSON.stringify(postLogin));
-        $.ajax({
-          url:'login',
-          type:'POST',
-          dataType:'json',
-          data:JSON.stringify(postLogin),
-          scriptCharset:'utf-8',
-          success:function(response){
-            console.log('success login');
-            let resp = JSON.parse(response);
-            this.setState({
-              fieldErrors : resp.fieldError.map( function (item,index,array)  {
-                return item;
-              }.bind(this))
-            });//对于返回的fieldError进行显示处理            
-            browserHistory.push('/home');
-          }.bind(this),
-          error:function(err) {
-            this.setState({fieldErrors:['请检查你的网络！']});
-            console.error("Failed to post");
-            browserHistory.push('/home');
-          }.bind(this)
-          });*/
+        console.log(postLogin);
+        $.post("login",postLogin,function(response){
+            console.log('success post');
+            if(isEmpty(response.fieldErrors) && isEmpty(response.actionErrors)){
+              sessionStorage.id=values.id;
+              browserHistory.push('/user');//返回error为空的时候跳转到主页
+              //$.post("indexRedirect");//使用push方法之后如果刷新页面会被struts拦截，所以只好通过后台刷新
+          } else {
+            this.setState({fieldErrors : response.fieldErrors,actionErrors:response.actionErrors});//对于返回的fieldError进行处理
+            browserHistory.push('/login');
+          }
+        }.bind(this))
       }
     });
   }

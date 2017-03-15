@@ -13,6 +13,7 @@ export default class Checkin extends React.Component{
     }
     handleChangeDept = (value) => {
         this.setState({deptID : value});
+        console.log(value);
     }
     handleChangeTimes = (value) => {
     //console.log(`selected ${value}`);

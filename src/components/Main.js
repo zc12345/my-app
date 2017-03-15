@@ -16,12 +16,12 @@ import MyHeader from './MyHeader';
 
 class Main extends React.Component {
   state = {
-    userid:localStorage.id,
+    userid:sessionStorage.id,
     username:''
   }
   //当logout的时候注销账号进行刷新
   onChildChanged = (e) => {
-    localStorage.clear();
+    sessionStorage.clear();
     this.setState({userid:''});
     browserHistory.push('/login');
   } 

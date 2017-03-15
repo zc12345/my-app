@@ -9,12 +9,23 @@ const Option = Select.Option;
 import { Link, browserHistory } from 'react-router';
 import $ from 'jquery';
 import Warning from './Warning';
+import isEmpty from './Function';
 
 class RegistrationForm extends React.Component {
   state = {
     confirmDirty: false,
-    fieldErrors: []
+    fieldErrors: [],
+    actionErrors:[],
+    actionMessages:[],
+    token:''
   };
+  
+  componentWillMount() {
+    $.post("generateToken",function(json){
+      console.log(json);
+      this.setState({token:json.token});
+    }.bind(this))
+  }
   handleSubmit = (e) => {
     e.preventDefault();
     this.props.form.validateFieldsAndScroll((err, fieldValues) => {
@@ -28,22 +39,23 @@ class RegistrationForm extends React.Component {
           'QQ': fieldValues['QQ'],
           'birthday': fieldValues['birthday'].format('YYYY-MM-DD'),
           'gender': fieldValues['gender'],
-          'description': fieldValues['description']
+          'description': fieldValues['description'],
+          'token':this.state.token
         }
-        console.log('Received values of form: ', JSON.stringify(values));
-        $.post('register', function (json) {
-          values.token = json.newToken;
-        });
+        console.log('Received values of form: ', values);
         //提交表单
-        $.post('register', JSON.stringify(values), function (response) {
+        $.post('register', values, function (response) {
           console.log('succeed to post');
-          let resp = JSON.parse(response);
-          this.setState({
-            fieldErrors: resp.fieldError.map(function (item, index, array) {
-              return item;
-            })
-          });
-          browserHistory.push('/home');
+          if(isEmpty(response.fieldErrors) && isEmpty(response.actionErrors)){
+              browserHistory.push('/home');//返回error为空的时候跳转到主页
+          } else {
+            this.setState({
+              fieldErrors : response.fieldErrors,
+              actionErrors : response.actionErrors,
+              actionMessages: response.actionMessages
+            });//对于返回的fieldError进行处理
+            //browserHistory.push('/login');
+          }
         }.bind(this));
       }
     });
@@ -90,6 +102,8 @@ class RegistrationForm extends React.Component {
     return (
       <div>
         <Warning value={this.state.fieldErrors} />
+        <Warning value={this.state.actionErrors} />
+        <Warning value={this.state.actionMessages} />
         <Form onSubmit={this.handleSubmit} className="register-form">
           <FormItem
             {...formItemLayout}

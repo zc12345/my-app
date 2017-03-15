@@ -2,10 +2,12 @@
 import React from 'react';
 import $ from 'jquery';
 import { Card, Col, Row, Upload, Icon } from 'antd';
+import { Link, browserHistory } from 'react-router';
 
 export default class DeptList extends React.Component{
     addDept = () =>{
         console.log("add");
+        browserHistory.push('/adddept');
     }
     deleteDept = () =>{
         console.log("删除");

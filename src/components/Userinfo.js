@@ -12,19 +12,19 @@ const Userinfo = () =>{
                     <form>
                     <div>
                         <h3>学号</h3>
-                        <Input disabled defaultValue={localStorage.id}/>
+                        <Input disabled defaultValue={sessionStorage.id}/>
                     </div>
                     <div>
                         <h3>姓名</h3>
-                        <Input defaultValue={localStorage.id}/>
+                        <Input defaultValue={sessionStorage.id}/>
                     </div>
                     <div>
                         <h3>性别</h3>
-                        <Input defaultValue={localStorage.id}/>
+                        <Input defaultValue={sessionStorage.id}/>
                     </div>
                     <div>
                         <h3>年龄</h3>
-                        <Input defaultValue={localStorage.id}/>
+                        <Input defaultValue={sessionStorage.id}/>
                     </div>
                     </form>
                 </Card>
@@ -34,19 +34,19 @@ const Userinfo = () =>{
                     <form>
                     <div>
                         <h3>QQ</h3>
-                        <Input defaultValue={localStorage.id}/>
+                        <Input defaultValue={sessionStorage.id}/>
                     </div>
                     <div>
                         <h3>手机</h3>
-                        <Input defaultValue={localStorage.id}/>
+                        <Input defaultValue={sessionStorage.id}/>
                     </div>
                     <div>
                         <h3>生日</h3>
-                        <Input defaultValue={localStorage.id}/>
+                        <Input defaultValue={sessionStorage.id}/>
                     </div>
                     <div>
                         <h3>自我简介</h3>
-                        <Input type="textarea" autosize={{ minRows: 2, maxRows: 40 }} defaultValue={localStorage.id}/>
+                        <Input type="textarea" autosize={{ minRows: 2, maxRows: 40 }} defaultValue={sessionStorage.id}/>
                     </div>
                     </form>                    
                 </Card>                
