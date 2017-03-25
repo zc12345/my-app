@@ -1,3 +1,4 @@
+本项目一段时间内应该不会重启了，先搁置在这里吧
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
 
 Below you will find some information on how to perform common tasks.<br>
