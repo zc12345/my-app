@@ -21,9 +21,6 @@ const columns = [{
   title: '年龄',
   dataIndex: 'age',
 }, {
-  title: '性别',
-  dataIndex: 'gender',
-}, {
   title: '手机',
   dataIndex: 'phoneNumber',
 }, {
@@ -47,31 +44,41 @@ export default class IntervieweeList extends React.Component {
     // ajax request after empty completing
     $.post("generateToken", function (response) {
       console.log(response);
-      this.setState({ token: response.token });
+      this.setState({ token: response.token },
+        () => {
+          let passed = {
+            ids : this.state.selectedRowKeys[0],
+            token: this.state.token
+          }
+          for(let i=1;i<this.state.selectedRowKeys.length;i++){
+            passed.ids = passed.ids+"/"+this.state.selectedRowKeys[i] ;
+            console.log("passedids:",passed);
+          }//使用数组形式传参数会出现奇怪的无法解析的现象，所以只能用字符串拼接，然后交给后台解析
+          //for(let i=0;i<this.state.selectedRowKeys.length;i++){
+          //  passed.ids.push(this.state.selectedRowKeys[i]);
+          //}
+          $.post('intervieweeCheck', passed, (response) => {
+            console.log('success post interviewIds');
+            console.log(response);
+            if (isEmpty(response.fieldErrors) && isEmpty(response.actionErrors)) {
+              this.setState({ data: response.restInterviewees });
+            } else {
+              this.setState({ fieldErrors: response.fieldErrors, actionErrors: response.actionErrors });//对于返回的fieldError进行处理
+            }
+          })
+          setTimeout(() => {
+            this.setState({
+              selectedRowKeys: [],
+              loading: false,
+            });
+          }, 1000);
+        }
+      );
     }.bind(this))
-    let passed = {
-      passedIDs: this.state.selectedRowKeys,
-      token: this.state.token
-    }
-    $.post('intervieweeCheck', passed, (response) => {
-      console.log('success post interviewIds');
-      console.log(response);
-      if (isEmpty(response.fieldErrors) && isEmpty(response.actionErrors)) {
-        this.setState({data:response.restInterviewees});
-      } else {
-        this.setState({ fieldErrors: response.fieldErrors, actionErrors: response.actionErrors });//对于返回的fieldError进行处理
-      }
-    })
-    setTimeout(() => {
-      this.setState({
-        selectedRowKeys: [],
-        loading: false,
-      });
-    }, 1000);
   }
-  onSelectChange = (selectedRowKeys) => {
-    console.log('selectedRowKeys changed: ', selectedRowKeys);
-    this.setState({ selectedRowKeys });
+  onSelectChange = (Keys) => {
+    console.log('selectedRowKeys changed: ', Keys);
+    this.setState({ selectedRowKeys:Keys });
   }
 
   componentWillMount() {
@@ -83,7 +90,7 @@ export default class IntervieweeList extends React.Component {
           id: response.restInterviewees[i].ID,
           name: response.restInterviewees[i].name,
           age: response.restInterviewees[i].age,
-          gender: response.restInterviewees[i].gender,
+          //         gender: response.restInterviewees[i].gender,//性别处理起来有点复杂，暂时先搁置
           phoneNumber: response.restInterviewees[i].phoneNumber,
           QQ: response.restInterviewees[i].QQ,
           description: response.restInterviewees[i].description

@@ -4,11 +4,12 @@ import { Upload, Icon, message } from 'antd';
 const Dragger = Upload.Dragger;
 //import Warning from './Warning'
 const props = {
-  name: 'file',
-  multiple: true,
-  showUploadList: false,
-  action: '//jsonplaceholder.typicode.com/posts/',//文件上传地址
+  name: 'upload',
+  multiple: false,
+  showUploadList: true,
+  action: 'fileUpload',//文件上传地址
   accept:'*.pdf,*.doc,*.docx',//支持上传的文件格式
+  headers:{"Content-Type":"multipart/form-data"},
   onChange(info) {
     const status = info.file.status;
     if (status !== 'uploading') {

@@ -18,10 +18,6 @@ const columns = [{
   dataIndex: 'dept',
   key: 'dept',
 }, {
-  title: '性别',
-  dataIndex: 'gender',
-  key: 'gender'
-}, {
   title: '年龄',
   dataIndex: 'age',
   key: 'age'
@@ -45,7 +41,7 @@ const columns = [{
   ),
 }];
 
-const data = [{
+const data1 = [{
   key: '1',
   file: 'John Brown',
   uploadtime: 32,
@@ -72,20 +68,33 @@ export default class MemberList extends React.Component {
         dept:null
     }
     handlerDelete = (key) =>{
-        
+        this.state.data.splice(key-1,1);
+        this.setState({})
     }
     handleSelectDept = (dept) =>{
         this.setState({dept:dept});
     }
     handleGetMember = (dept) =>{
-        if(this.state.dept===null){
+    /*    if(this.state.dept===null){
             this.setState({fieldErrors:["请选择部门！"]});
         }else{
-            $.post("",this.state.dept,(json)=>{
-                console.log(json);
-
+            $.post("fetchAllPerson",this.state.dept,(response)=>{
+                console.log(response);
+                for (let i = 0; i < response.restInterviewees.length; i++) {
+                  this.state.data.push({
+                    key: response.restInterviewees[i].ID,
+                    id: response.restInterviewees[i].ID,
+                    name: response.restInterviewees[i].name,
+                    age: response.restInterviewees[i].age,
+                    //         gender: response.restInterviewees[i].gender,//性别处理起来有点复杂，暂时先搁置
+                    phoneNumber: response.restInterviewees[i].phoneNumber,
+                    QQ: response.restInterviewees[i].QQ,
+                    description: response.restInterviewees[i].description
+                  });
+                }
             })
-        }
+        }*/
+        this.setState({data:data1});
     }
     render(){
         return (
@@ -95,7 +104,7 @@ export default class MemberList extends React.Component {
             <Warning value={this.state.actionMessages}/>
             <div>
                 部门
-                <Select defaultValue="java" style={{ width: 120,padding:'20px' }} onChange={this.handleSelectDept}>
+                <Select defaultValue="1" style={{ width: 120,padding:'20px' }} onChange={this.handleSelectDept}>
                 <Option value="1">C++</Option>
                 <Option value="2">python</Option>
                 <Option value="3">java</Option>
@@ -108,7 +117,7 @@ export default class MemberList extends React.Component {
                 </div>*/}
             </div>
             <Table 
-                columns={columns} dataSource={data} 
+                columns={columns} dataSource={this.state.data} 
                 expandedRowRender={record => <p>{record.description}</p>}
             />
         </div>
